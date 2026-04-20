@@ -1,0 +1,41 @@
+app:
+  timezone: "Asia/Seoul"
+  report_hour: 8
+  report_minute: 30
+  lookback_hours: 72
+  request_delay_sec: [1, 2]
+
+database:
+  path: "data/theme_detector.db"
+
+logging:
+  level: "INFO"
+  file: "logs/theme_detector.log"
+
+thresholds:
+  volume_spike_ratio: 3.0
+  price_rise_5d: 0.10
+  market_cap_min: 50000000000       # 500억 원
+  market_cap_max: 5000000000000     # 5조 원
+  theme_activation_min_stocks: 3
+
+weights:
+  news_surge: 30
+  volume_spike_count: 25
+  avg_return_5d: 20
+  policy_disclosure: 15
+  community_surge: 10
+
+sources:
+  news_rss:
+    - "https://finance.naver.com/news/news_list.naver?mode=RSS2D&section_id=101&section_id2=258"
+    - "https://www.yna.co.kr/rss/economy.xml"
+    - "https://www.hankyung.com/feed/finance"
+  dart_endpoint: "https://opendart.fss.or.kr/api/list.json"
+  reddit_like_sources: []
+
+telegram:
+  enabled: true
+
+backtest:
+  forward_days: 5
